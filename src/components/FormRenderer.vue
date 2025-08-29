@@ -34,7 +34,6 @@
           </Button>
         </div>
 
-        <!-- Debug info (remove in production) -->
         <div v-if="showDebug" class="mt-8 p-4 bg-gray-50 rounded-lg">
           <h3 class="font-semibold mb-2">Debug Info:</h3>
           <div class="space-y-2 text-sm">
@@ -54,7 +53,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import {
   Card,
   CardContent,
@@ -71,6 +69,7 @@ import TextField from '@/components/form-fields/TextField.vue';
 import EmailField from '@/components/form-fields/EmailField.vue';
 import TextareaField from '@/components/form-fields/TextareaField.vue';
 import SelectField from '@/components/form-fields/SelectField.vue';
+import FallbackField from '@/components/form-fields/FallbackField.vue';
 
 interface Props {
   schema: FormSchema;
@@ -90,12 +89,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
-onMounted(() => {
-  registerField('text', TextField);
-  registerField('email', EmailField);
-  registerField('textarea', TextareaField);
-  registerField('select', SelectField);
-});
+registerField('text', TextField);
+registerField('email', EmailField);
+registerField('textarea', TextareaField);
+registerField('select', SelectField);
 
 const {
   formData,
@@ -111,9 +108,9 @@ const getFieldComponentSafe = (type: string) => {
   const component = getFieldComponent(type);
   if (!component) {
     console.warn(
-      `Field component for type "${type}" not found. Using TextField as fallback.`
+      `Field component for type "${type}" not found. Using FallbackField to display error.`
     );
-    return TextField;
+    return FallbackField;
   }
   return component;
 };
