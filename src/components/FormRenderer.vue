@@ -70,6 +70,7 @@ import { getFieldComponent, registerField } from '@/lib/field-registry';
 import TextField from '@/components/form-fields/TextField.vue';
 import EmailField from '@/components/form-fields/EmailField.vue';
 import TextareaField from '@/components/form-fields/TextareaField.vue';
+import SelectField from '@/components/form-fields/SelectField.vue';
 
 interface Props {
   schema: FormSchema;
@@ -93,6 +94,7 @@ onMounted(() => {
   registerField('text', TextField);
   registerField('email', EmailField);
   registerField('textarea', TextareaField);
+  registerField('select', SelectField);
 });
 
 const {
