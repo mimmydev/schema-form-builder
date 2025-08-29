@@ -43,6 +43,22 @@ const defaultSchema: FormSchema = {
         maxLength: 500,
       },
     },
+    {
+      id: 'inquiryType',
+      type: 'select',
+      label: 'Inquiry Type',
+      placeholder: 'Select a reason for contacting us',
+      required: true,
+      options: [
+        { label: 'General Question', value: 'general' },
+        { label: 'Technical Support', value: 'support' },
+        { label: 'Sales', value: 'sales' },
+        { label: 'Feedback', value: 'feedback' },
+      ],
+      validation: {
+        required: true,
+      },
+    },
   ],
 };
 
