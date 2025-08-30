@@ -2,6 +2,20 @@
 
 Form builder that dynamically generates forms from JSON schemas. Built with Vue 3, Vite, Shadcn-Vue and modern web technologies.
 
+This schema-driven form system has 4 main layers:
+
+1. Schema Layer `(types/schema.ts)` - Defines WHAT the form looks like
+2. Registry Layer `(lib/field-registry.ts)` - Maps field types to components  
+3. Rendering Layer `(FormRenderer.vue)` - Converts schema to actual form
+4. Logic Layer `(composables/useFormValidation.ts)` - Manages state & validation
+
+The key insight is separation of concerns where the 
+
+- **schema** defines **structure**
+- **registry** enables **extensibility**
+- **renderer** handles **display**
+- **composable** manages **business logic**
+
 ## 🚀 Features
 
 - **Schema-Driven**: Define forms using simple JSON schemas
